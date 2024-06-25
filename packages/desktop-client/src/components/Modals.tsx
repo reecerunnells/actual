@@ -392,7 +392,6 @@ export function Modals() {
               key={name}
               modalProps={modalProps}
               id={options?.id || null}
-              actions={actions}
               transaction={options?.transaction || null}
             />
           );
