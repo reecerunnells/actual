@@ -10,6 +10,7 @@ import { css } from 'glamor';
 import { type CustomReportEntity } from 'loot-core/types/models/reports';
 
 import { useNavigate } from '../../hooks/useNavigate';
+import { useResponsive } from '../../ResponsiveProvider';
 import { type CSSProperties, styles } from '../../style';
 import { theme } from '../../style/theme';
 
@@ -67,6 +68,7 @@ const ExternalLink = ({
 };
 
 const TextLink = ({ style, onClick, children, ...props }: TextLinkProps) => {
+  const { isNarrowWidth } = useResponsive();
   return (
     <Text
       style={{
@@ -74,10 +76,14 @@ const TextLink = ({ style, onClick, children, ...props }: TextLinkProps) => {
         display: 'inline',
         border: 0,
         cursor: 'pointer',
-        ':hover': {
-          textDecoration: 'underline',
-          boxShadow: 'none',
-        },
+        ...(isNarrowWidth
+          ? { textDecoration: 'underline', boxShadow: 'none' }
+          : {
+              ':hover': {
+                textDecoration: 'underline',
+                boxShadow: 'none',
+              },
+            }),
         ...style,
       }}
       {...props}
