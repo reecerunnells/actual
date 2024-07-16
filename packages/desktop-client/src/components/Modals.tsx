@@ -404,6 +404,7 @@ export function Modals() {
               actions={actions}
               transactionIds={options?.transactionIds}
               getTransaction={options?.getTransaction}
+              onScheduleLinked={options?.onScheduleLinked}
             />
           );
 

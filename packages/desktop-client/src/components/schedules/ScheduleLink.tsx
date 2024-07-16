@@ -23,11 +23,13 @@ export function ScheduleLink({
   modalProps,
   transactionIds: ids,
   getTransaction,
+  onScheduleLinked,
 }: {
   actions: BoundActions;
   modalProps?: CommonModalProps;
   transactionIds: string[];
   getTransaction: (transactionId: string) => TransactionEntity;
+  onScheduleLinked?: (scheduleId: string) => void;
 }) {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState('');
@@ -49,6 +51,7 @@ export function ScheduleLink({
         updated: ids.map(id => ({ id, schedule: scheduleId })),
       });
     }
+    onScheduleLinked?.(scheduleId);
     dispatch(popModal());
   }
 
