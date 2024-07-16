@@ -10,11 +10,13 @@ import { type CommonModalProps } from '../Modals';
 
 type ConfirmTransactionDeleteProps = {
   modalProps: CommonModalProps;
+  message?: string;
   onConfirm: () => void;
 };
 
 export function ConfirmTransactionDelete({
   modalProps,
+  message = 'Are you sure you want to delete the transaction?',
   onConfirm,
 }: ConfirmTransactionDeleteProps) {
   const { isNarrowWidth } = useResponsive();
@@ -27,7 +29,7 @@ export function ConfirmTransactionDelete({
   return (
     <Modal title="Confirm Delete" {...modalProps}>
       <View style={{ lineHeight: 1.5 }}>
-        <Paragraph>Are you sure you want to delete the transaction?</Paragraph>
+        <Paragraph>{message}</Paragraph>
         <View
           style={{
             flexDirection: 'row',
