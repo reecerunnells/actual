@@ -6,12 +6,12 @@ import { type Notification } from 'loot-core/client/state-types/notifications';
 
 type UndoNotification = Pick<
   Notification,
-  'type' | 'title' | 'message' | 'messageActions'
+  'type' | 'title' | 'message' | 'messageActions' | 'pre'
 >;
 
 type RedoNotification = Pick<
   Notification,
-  'type' | 'title' | 'message' | 'messageActions'
+  'type' | 'title' | 'message' | 'messageActions' | 'pre'
 >;
 
 type UndoActions = {
@@ -35,9 +35,10 @@ export function useUndo(): UndoActions {
   const showUndoNotification = useCallback(
     ({
       type = 'message',
-      title = 'Undo?',
+      title,
       message,
       messageActions,
+      pre,
     }: UndoNotification) => {
       dispatch(
         addNotification({
@@ -45,6 +46,7 @@ export function useUndo(): UndoActions {
           title,
           message,
           messageActions,
+          pre,
           sticky: true,
           button: {
             title: 'Undo',
@@ -59,9 +61,10 @@ export function useUndo(): UndoActions {
   const showRedoNotification = useCallback(
     ({
       type = 'message',
-      title = 'Redo?',
+      title,
       message,
       messageActions,
+      pre,
     }: RedoNotification) => {
       dispatch(
         addNotification({
@@ -70,6 +73,7 @@ export function useUndo(): UndoActions {
           message,
           messageActions,
           sticky: true,
+          pre,
           button: {
             title: 'Redo',
             action: dispatchRedo,
