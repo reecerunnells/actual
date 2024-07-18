@@ -51,7 +51,11 @@ function DiscoverSchedulesTable({
         height={ROW_HEIGHT}
         inset={15}
         onClick={e => {
-          dispatchSelected({ type: 'select', id: item.id, event: e });
+          dispatchSelected({
+            type: 'select',
+            id: item.id,
+            isRangeSelect: e.shiftKey,
+          });
         }}
         style={{
           borderColor: selected ? theme.tableBorderSelected : theme.tableBorder,
